@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>00:00:00 - Stopwatch</title>
+    
+    <!-- Google adsense code update here -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%232ecc71%22/><circle cx=%2250%22 cy=%2255%22 r=%2225%22 fill=%22none%22 stroke=%22white%22 stroke-width=%226%22/><path d=%22M47 48v14l10-7z%22 fill=%22white%22/><path d=%22M45 22h10v6H45z%22 fill=%22white%22/></svg>">
+
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --green: #2ecc71;
+            --blue: #3498db;
+            --red: #e74c3c;
+            --link-color: #7f8c8d;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0; /* Space for ads */
+        }
+
+        /* Ad Slot Styling */
+        .ad-container {
+            width: 100%;
+            max-width: 728px;
+            margin: 10px auto;
+            text-align: center;
+            min-height: 90px; /* Prevents layout shift */
+        }
+
+        .stopwatch-card {
+            background: var(--card-bg);
+            padding: 3.5rem 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        /* Timer Styles */
+        #display { font-size: clamp(3rem, 12vw, 4.5rem); font-weight: 800; color: var(--text-main); font-family: 'Courier New', monospace; margin: 0; }
+        #millisec { font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 600; color: var(--text-sub); font-family: 'Courier New', monospace; margin-bottom: 2.5rem; }
+        .controls { display: flex; gap: 15px; justify-content: center; }
+        
+        button { border: none; padding: 18px 0; font-size: 1.1rem; font-weight: 700; border-radius: 15px; cursor: pointer; flex: 1; color: white; transition: transform 0.1s ease; }
+        .btn-start, .btn-pause { background-color: var(--green); }
+        .btn-continue { background-color: var(--blue); }
+        .btn-clear { background-color: var(--red); }
+
+        .fs-btn { position: absolute; top: 20px; right: 20px; background: none; color: #ccc; border: 1px solid #eee; padding: 6px 12px; font-size: 0.7rem; border-radius: 8px; }
+
+        .page-footer { margin-top: auto; padding: 20px 0; display: flex; justify-content: center; gap: 20px; width: 100%; }
+        .page-footer a { color: var(--link-color); text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+        
+        /* Hide ads in Fullscreen */
+        .stopwatch-card:fullscreen ~ .ad-container,
+        .stopwatch-card:fullscreen ~ .page-footer { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Google adsense code update here -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="stopwatch-card" id="sw-app">
+        <button class="fs-btn" onclick="toggleFS()">⛶ FULLSCREEN</button>
+        <div class="display-container">
+            <div id="display">00:00:00</div>
+            <div id="millisec">000</div>
+        </div>
+        <div class="controls">
+            <button id="mainBtn" class="btn-start">Start</button>
+            <button id="clearBtn" class="btn-clear">Clear</button>
+        </div>
+    </div>
+
+    <!-- Google adsense code update here -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="YYYYYYYYYY"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <footer class="page-footer">
+        <a href="help.html">Help & Support</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy Policy</a>
+    </footer>
+
+    <script>
+        // ... (Same JS logic as previous version) ...
+        let startTime, timerInterval, elapsedTime = 0;
+        const mainBtn = document.getElementById('mainBtn');
+        const display = document.getElementById('display');
+        const msDisplay = document.getElementById('millisec');
+
+        function formatTime(time) {
+            let hh = Math.floor(time / 3600000);
+            let mm = Math.floor((time % 3600000) / 60000);
+            let ss = Math.floor((time % 60000) / 1000);
+            let ms = time % 1000;
+            const main = `${String(hh).padStart(2,"0")}:${String(mm).padStart(2,"0")}:${String(ss).padStart(2,"0")}`;
+            return { main, ms: String(ms).padStart(3,"0") };
+        }
+
+        function update(time) {
+            const t = formatTime(time);
+            display.innerText = t.main;
+            msDisplay.innerText = t.ms;
+            document.title = `${t.main} - Stopwatch`;
+        }
+
+        mainBtn.addEventListener("click", () => {
+            if (mainBtn.innerText === "Start" || mainBtn.innerText === "Continue") {
+                startTime = Date.now() - elapsedTime;
+                timerInterval = setInterval(() => {
+                    elapsedTime = Date.now() - startTime;
+                    update(elapsedTime);
+                }, 10);
+                mainBtn.innerText = "Pause";
+                mainBtn.className = "btn-pause";
+            } else {
+                clearInterval(timerInterval);
+                mainBtn.innerText = "Continue";
+                mainBtn.className = "btn-continue";
+            }
+        });
+
+        document.getElementById('clearBtn').addEventListener("click", () => {
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+            update(0);
+            mainBtn.innerText = "Start";
+            mainBtn.className = "btn-start";
+        });
+
+        function toggleFS() {
+            const el = document.getElementById('sw-app');
+            if (!document.fullscreenElement) el.requestFullscreen();
+            else document.exitFullscreen();
+        }
+    </script>
+</body>
+</html>
