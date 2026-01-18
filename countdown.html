@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%232ecc71%22/><circle cx=%2250%22 cy=%2255%22 r=%2225%22 fill=%22none%22 stroke=%22white%22 stroke-width=%226%22/><path d=%22M47 48v14l10-7z%22 fill=%22white%22/><path d=%22M45 22h10v6H45z%22 fill=%22white%22/></svg>">
+    <link rel="stylesheet" href="style.css">
+    <title>Online Countdown - OnlineStopwatch24</title>
+    <style>
+        :root { --bg: #f8fafc; --card: #ffffff; --primary: #2ecc71; --text: #1e293b; --secondary: #64748b; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text); line-height: 1.6; }
+        
+        nav { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-weight: 800; color: var(--primary); text-decoration: none; font-size: 1.5rem; }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.9rem; }
+
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .countdown-card { background: var(--card); padding: 3rem; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        
+        #display { font-size: clamp(3.5rem, 10vw, 5rem); font-weight: 800; font-family: monospace; color: var(--text); margin: 20px 0; }
+        
+        .preset-container { margin-bottom: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .btn { border: none; padding: 12px 25px; font-size: 1rem; font-weight: 700; border-radius: 12px; cursor: pointer; transition: 0.2s; }
+        .btn-preset { background: #f1f5f9; color: var(--secondary); }
+        .btn-preset:hover { background: #e2e8f0; }
+        .btn-main { background: var(--primary); color: white; padding: 15px 40px; margin-top: 20px; }
+        .btn-clear { background: #ff4757; color: white; margin-left: 10px; }
+
+        .content-section { text-align: left; background: white; padding: 40px; border-radius: 20px; margin-top: 40px; }
+        footer { padding: 40px 0; border-top: 1px solid #e2e8f0; margin-top: 60px; text-align: center; }
+
+        /* Position the icon button at the top-right of the card */
+        .fs-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            line-height: 1;
+            padding: 5px;
+            z-index: 10;
+        }
+
+        .fs-toggle:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Ensure the card is the "anchor" for the icon */
+        .stopwatch-card, .timer-card, .countdown-card {
+            position: relative;
+        }
+
+             .fs-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            line-height: 1;
+            padding: 5px;
+            z-index: 10;
+        }
+
+        .fs-toggle:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Ensure the card is the "anchor" for the icon */
+        .stopwatch-card, .timer-card, .countdown-card {
+            position: relative;
+        }   
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">⏱ OnlineStopwatch</a>
+    <div class="nav-links">
+        <a href="index.html">Stopwatch</a>
+        <a href="timer.html">Timer</a>
+        <a href="countdown.html">Countdown</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="countdown-card" id="cd-app">
+    <button class="fs-toggle" onclick="toggleFS('cd-app')" title="Fullscreen">⛶</button>
+    
+    <h1>Quick Countdown</h1>
+        <div class="preset-container">
+            <button class="btn btn-preset" onclick="setCD(60)">1 Min</button>
+            <button class="btn btn-preset" onclick="setCD(300)">5 Min</button>
+            <button class="btn btn-preset" onclick="setCD(600)">10 Min</button>
+            <button class="btn btn-preset" onclick="setCD(1800)">30 Min</button>
+        </div>
+
+        <div id="display">00:00:00</div>
+        
+        <div class="controls">
+            <button id="startBtn" class="btn btn-main">Start</button>
+            <button id="clearBtn" class="btn btn-clear">Reset</button>
+        </div>
+    </div>
+
+    <div class="content-section" style="text-align: left; background: white; padding: 40px; border-radius: 24px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        <h2>Quick Countdown Presets for Daily Tasks</h2>
+        <p>Our quick countdown tool is optimized for speed and ease of use. With one-click presets for 1, 5, and 10 minutes, it is the ideal companion for rapid-fire tasks.</p>
+        
+        <h3>Perfect For:</h3>
+        <ul>
+            <li><strong>Education:</strong> Teachers can use the 10-minute preset for student quizzes or group discussions.</li>
+            <li><strong>Wellness:</strong> Use the 5-minute preset for a quick guided meditation or breathing exercise.</li>
+            <li><strong>Household:</strong> Set a quick reminder for laundry or steeping tea.</li>
+        </ul>
+        <p>By using a dedicated browser-based countdown, you maintain a "work-mode" mindset on your computer without reaching for your phone and falling into the social media trap.</p>
+    </div>
+</div>
+
+<footer>
+    <a href="help.html">Help</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy</a>
+    <p>&copy; 2026 OnlineStopwatch24</p>
+</footer>
+
+<script>
+    let timer;
+    let timeLeft = 0;
+    const display = document.getElementById('display');
+    const startBtn = document.getElementById('startBtn');
+
+    function updateUI(seconds) {
+        if (seconds < 0) seconds = 0;
+        let h = Math.floor(seconds / 3600);
+        let m = Math.floor((seconds % 3600) / 60);
+        let s = seconds % 60;
+        const timeString = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        
+        display.innerText = timeString;
+        document.title = (seconds > 0) ? `${timeString} - Countdown` : "Online Countdown";
+    }
+
+    function setCD(seconds) {
+        clearInterval(timer);
+        timeLeft = seconds;
+        updateUI(timeLeft);
+        startBtn.innerText = "Start";
+    }
+
+    startBtn.addEventListener('click', () => {
+        if (timeLeft <= 0) return alert("Select a time first!");
+
+        if (startBtn.innerText === "Start" || startBtn.innerText === "Continue") {
+            startBtn.innerText = "Pause";
+            timer = setInterval(() => {
+                timeLeft--;
+                updateUI(timeLeft);
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert("Time is up!");
+                    startBtn.innerText = "Start";
+                }
+            }, 1000);
+        } else {
+            clearInterval(timer);
+            startBtn.innerText = "Continue";
+        }
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+        clearInterval(timer);
+        timeLeft = 0;
+        updateUI(0);
+        startBtn.innerText = "Start";
+    });
+
+    function toggleFS(id) {
+        const el = document.getElementById(id);
+        if (!document.fullscreenElement) {
+            el.requestFullscreen().catch(err => alert(err.message));
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+</script>
+</body>
+</html>

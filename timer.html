@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%232ecc71%22/><circle cx=%2250%22 cy=%2255%22 r=%2225%22 fill=%22none%22 stroke=%22white%22 stroke-width=%226%22/><path d=%22M47 48v14l10-7z%22 fill=%22white%22/><path d=%22M45 22h10v6H45z%22 fill=%22white%22/></svg>">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Online Timer - OnlineStopwatch24</title>
+    <style>
+        /* Shared Styles */
+        :root { --bg: #f8fafc; --primary: #2ecc71; --text: #1e293b; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text); }
+        
+        /* Navigation Bar */
+        nav { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-weight: 800; color: var(--primary); text-decoration: none; font-size: 1.5rem; display: flex; align-items: center; }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: var(--text); font-weight: 500; }
+
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .timer-card { background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        #display { font-size: 5rem; font-weight: 800; font-family: monospace; margin: 20px 0; }
+        input { width: 60px; padding: 10px; font-size: 1.5rem; text-align: center; border-radius: 8px; border: 2px solid #e2e8f0; }
+        .btn { padding: 15px 40px; font-size: 1rem; font-weight: 700; border-radius: 12px; cursor: pointer; border: none; background: var(--primary); color: white; }
+
+        /* Position the icon button at the top-right of the card */
+        .fs-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            line-height: 1;
+            padding: 5px;
+            z-index: 10;
+        }
+
+        .fs-toggle:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Ensure the card is the "anchor" for the icon */
+        .stopwatch-card, .timer-card, .countdown-card {
+            position: relative;
+        }
+
+             .fs-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            line-height: 1;
+            padding: 5px;
+            z-index: 10;
+        }
+
+        .fs-toggle:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Ensure the card is the "anchor" for the icon */
+        .stopwatch-card, .timer-card, .countdown-card {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">⏱ OnlineStopwatch</a>
+    <div class="nav-links">
+        <a href="index.html">Stopwatch</a>
+        <a href="timer.html">Timer</a>
+        <a href="countdown.html">Countdown</a>
+    </div>
+</nav>
+
+<div class="container">
+    
+    <div class="timer-card" id="timer-app">
+    <!-- <div class="card"> -->
+        <button class="fs-toggle" onclick="toggleFS('timer-app')" title="Fullscreen">⛶</button>
+        
+        <h1>Set Timer</h1>
+
+        <div class="input-container">
+            <div class="input-group">
+                <button class="adjust-btn" onclick="changeVal('h', 1)">+</button>
+                <input type="number" id="h" value="00" readonly>
+                <button class="adjust-btn" onclick="changeVal('h', -1)">-</button>
+                <span class="unit-label">HRS</span>
+            </div>
+
+            <div class="input-group">
+                <button class="adjust-btn" onclick="changeVal('m', 1)">+</button>
+                <input type="number" id="m" value="00" readonly>
+                <button class="adjust-btn" onclick="changeVal('m', -1)">-</button>
+                <span class="unit-label">MIN</span>
+            </div>
+
+            <div class="input-group">
+                <button class="adjust-btn" onclick="changeVal('s', 1)">+</button>
+                <input type="number" id="s" value="00" readonly>
+                <button class="adjust-btn" onclick="changeVal('s', -1)">-</button>
+                <span class="unit-label">SEC</span>
+            </div>
+        </div>
+
+        <div id="display">00:00:00</div>
+        <button id="startBtn" class="btn">Start Timer</button>
+    </div>
+
+    <div class="content-section" style="text-align: left; background: white; padding: 40px; border-radius: 24px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        <h2>The Science of Time Blocking: Using a Digital Timer</h2>
+        <p>Using a countdown timer is more than just watching seconds slip away; it’s a psychological tool known as <em>Time Boxing</em>. By setting a specific duration for a task, you trigger "Parkinson’s Law"—the concept that work expands to fill the time available for its completion.</p>
+
+        <h3>Why Use Our Online Timer?</h3>
+        <p>Unlike mobile phone timers that often come with distracting notifications, our <strong>online timer</strong> provides a clean, web-based interface. It is perfect for the <strong>Pomodoro Technique</strong>—a method where you work for 25 minutes and break for 5. This cycle is proven to keep the brain fresh and focused.</p>
+        
+        <h3>How to Set Your Timer</h3>
+        <ol>
+            <li>Input the desired hours, minutes, and seconds into the fields.</li>
+            <li>Click "Start" to begin the descent to zero.</li>
+            <li>Use the Fullscreen icon for a large-scale display during classroom activities or gym sessions.</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+    let timer;
+    let totalSecs = 0;
+    const startBtn = document.getElementById('startBtn');
+
+    startBtn.addEventListener('click', () => {
+        if (startBtn.innerText === "Start Timer") {
+            // Use unique names for the input values to avoid conflicts
+            const inputH = parseInt(document.getElementById('h').value) || 0;
+            const inputM = parseInt(document.getElementById('m').value) || 0;
+            const inputS = parseInt(document.getElementById('s').value) || 0;
+            
+            totalSecs = (inputH * 3600) + (inputM * 60) + inputS;
+
+            if(totalSecs <= 0) {
+                alert("Please set a time first!");
+                return;
+            }
+
+            // Hide the input container and show the timer
+            document.querySelector('.input-container').style.display = 'none';
+            startBtn.innerText = "Stop";
+            
+            timer = setInterval(() => {
+                totalSecs--;
+                
+                // Calculate display values
+                const displayHrs = Math.floor(totalSecs / 3600);
+                const displayMins = Math.floor((totalSecs % 3600) / 60);
+                const displaySecs = totalSecs % 60;
+                
+                const timeStr = `${String(displayHrs).padStart(2,'0')}:${String(displayMins).padStart(2,'0')}:${String(displaySecs).padStart(2,'0')}`;
+                
+                document.getElementById('display').innerText = timeStr;
+                document.title = `${timeStr} - Timer`; 
+
+                if(totalSecs <= 0) {
+                    clearInterval(timer);
+                    alert("Time Up!");
+                    location.reload(); // Resets the UI
+                }
+            }, 1000);
+        } else {
+            // If button says "Stop", reset the page
+            location.reload();
+        }
+    });
+
+    function toggleFS(id) {
+        const el = document.getElementById(id);
+        if (!document.fullscreenElement) {
+            el.requestFullscreen().catch(err => alert(err.message));
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    function changeVal(id, amount) {
+        const input = document.getElementById(id);
+        let val = parseInt(input.value) || 0;
+        val += amount;
+
+        // Constraints: Minutes/Seconds 0-59, Hours 0-99
+        if (id === 'h') {
+            if (val < 0) val = 0;
+            if (val > 99) val = 99;
+        } else {
+            if (val < 0) val = 59;
+            if (val > 59) val = 0;
+        }
+
+        input.value = String(val).padStart(2, '0');
+    }
+</script>
+</body>
+</html>
