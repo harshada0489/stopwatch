@@ -4,10 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://onlinestopwatch24.com/about.html" />
     <title>About Us - OnlineStopwatch24</title>
+    <style>
+        /* Shared Styles */
+        :root { --bg: #f8fafc; --primary: #2ecc71; --text: #1e293b; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text); }
+        
+        /* Navigation Bar */
+        nav { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-weight: 800; color: var(--primary); text-decoration: none; font-size: 1.5rem; display: flex; align-items: center; }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: var(--text); font-weight: 500; }
+
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .timer-card { background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        #display { font-size: 5rem; font-weight: 800; font-family: monospace; margin: 20px 0; }
+        input { width: 60px; padding: 10px; font-size: 1.5rem; text-align: center; border-radius: 8px; border: 2px solid #e2e8f0; }
+        .btn { padding: 15px 40px; font-size: 1rem; font-weight: 700; border-radius: 12px; cursor: pointer; border: none; background: var(--primary); color: white; }
+
+        /* Position the icon button at the top-right of the card */
+        .fs-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            line-height: 1;
+            padding: 5px;
+            z-index: 10;
+        }
+
+        .fs-toggle:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Ensure the card is the "anchor" for the icon */
+        .stopwatch-card, .timer-card, .countdown-card {
+            position: relative;
+        }
+
+             .fs-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            line-height: 1;
+            padding: 5px;
+            z-index: 10;
+        }
+
+        .fs-toggle:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Ensure the card is the "anchor" for the icon */
+        .stopwatch-card, .timer-card, .countdown-card {
+            position: relative;
+        }
+    </style>
 </head>
 <body>
-    <nav>
+    <!-- <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">⏱ OnlineStopwatch</a>
             <div class="nav-links">
@@ -16,7 +84,18 @@
                 <a href="countdown.html">Countdown</a>
             </div>
         </div>
-    </nav>
+    </nav> -->
+
+    <nav>
+    <a href="index.html" class="logo">⏱ OnlineStopwatch</a>
+    <div class="nav-links">
+        <a href="index.html">Stopwatch</a>
+        <a href="timer.html">Timer</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="about.html">About</a>
+        <a href="help.html">How to Use</a>
+    </div>
+</nav>
 
     <div class="container">
         <div class="card" style="text-align: left; max-width: 800px; margin: 40px auto; padding: 40px;">

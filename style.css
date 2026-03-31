@@ -126,11 +126,48 @@ nav {
 }
 
 /* Keep the fullscreen icon in the corner even in FS mode */
-.fs-toggle {
+/* .fs-toggle {
     position: absolute;
     top: 20px;
     right: 20px;
     z-index: 1000;
+} */
+
+.fs-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    color: #94a3b8; /* Subtle gray color */
+    transition: color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.fs-toggle svg {
+    width: 24px;
+    height: 24px;
+}
+
+.fs-toggle:hover {
+    color: var(--primary); /* Turns green on hover */
+    transform: scale(1.1);
+}
+
+/* Ensure it remains visible in Fullscreen mode */
+:fullscreen .fs-toggle {
+    color: #cbd5e1;
+    opacity: 0.5;
+}
+
+:fullscreen .fs-toggle:hover {
+    opacity: 1;
 }
 
 /* Container for all three input groups */
