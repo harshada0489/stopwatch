@@ -1,20 +1,11 @@
 [
   {
-    "slug": "precision-athletic-training",
-    "title": "The Importance of Precision in Athletic Training",
-    "date": "2026-03-15",
-    "description": "Why millisecond accuracy matters in athletic training and how digital stopwatches provide more consistent measurements than handheld alternatives."
+    "slug": "mastering-pomodoro-technique"
   },
   {
-    "slug": "parkinsons-law-countdown",
-    "title": "Parkinson's Law: Why You Need a Countdown",
-    "date": "2026-03-10",
-    "description": "Learn how Parkinson's Law affects your productivity and how using a countdown timer with time boxing can help you get more done in less time."
+    "slug": "parkinsons-law-countdown"
   },
   {
-    "slug": "mastering-pomodoro-technique",
-    "title": "Mastering the Pomodoro Technique for Deep Work",
-    "date": "2026-03-01",
-    "description": "Learn how the Pomodoro Technique uses timed intervals to boost focus and prevent burnout. Use our online timer for 25-minute sprints."
+    "slug": "precision-athletic-training"
   }
 ]
