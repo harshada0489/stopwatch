@@ -1,24 +1,31 @@
-name: Auto-generate Sitemap
+name: Build Articles & Update Sitemap
 
 on:
   push:
     branches: [main]
     paths:
       - '**.html'
+      - 'posts/**.md'
+
+permissions:
+  contents: write
 
 jobs:
-  update-sitemap:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build articles from markdown
+        run: node build-articles.js
+
       - name: Generate sitemap
         run: node generate-sitemap.js
 
-      - name: Commit updated sitemap
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
-          git diff --staged --quiet || git commit -m "Auto-update sitemap.xml"
+          git add articles/ articles.html articles-manifest.json sitemap.xml
+          git diff --staged --quiet || git commit -m "Auto-build articles and update sitemap"
           git push
