@@ -6,7 +6,21 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%232ecc71%22/><circle cx=%2250%22 cy=%2255%22 r=%2225%22 fill=%22none%22 stroke=%22white%22 stroke-width=%226%22/><path d=%22M47 48v14l10-7z%22 fill=%22white%22/><path d=%22M45 22h10v6H45z%22 fill=%22white%22/></svg>">
     <link rel="stylesheet" href="style.css">
     <link rel="canonical" href="https://onlinestopwatch24.com/timer.html" />
-    <title>Online Timer - OnlineStopwatch24</title>
+    <title>Online Timer - Free Countdown Timer for Pomodoro & Study | OnlineStopwatch24</title>
+    <meta name="description" content="Set a free online timer for Pomodoro sessions, workouts, cooking, and study. Features fullscreen display and custom hours, minutes, seconds input. No installation needed.">
+    <meta name="keywords" content="online timer, free timer, pomodoro timer, countdown timer, study timer, workout timer, kitchen timer">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Online Timer - Free Countdown Timer for Pomodoro & Study">
+    <meta property="og:description" content="Set a free online timer for Pomodoro sessions, workouts, cooking, and study. Features fullscreen display.">
+    <meta property="og:url" content="https://onlinestopwatch24.com/timer.html">
+    <meta property="og:site_name" content="OnlineStopwatch24">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Online Timer - Free Countdown Timer for Pomodoro & Study">
+    <meta name="twitter:description" content="Set a free online timer for Pomodoro sessions, workouts, cooking, and study. Features fullscreen display.">
     <style>
         /* Shared Styles */
         :root { --bg: #f8fafc; --primary: #2ecc71; --text: #1e293b; }
@@ -49,30 +63,6 @@
             position: relative;
         }
 
-             .fs-toggle {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: var(--secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.2s, color 0.2s;
-            line-height: 1;
-            padding: 5px;
-            z-index: 10;
-        }
-
-        .fs-toggle:hover {
-            color: var(--primary);
-            transform: scale(1.1);
-        }
-
-        /* Ensure the card is the "anchor" for the icon */
-        .stopwatch-card, .timer-card, .countdown-card {
-            position: relative;
-        }
     </style>
 </head>
 <body>
@@ -140,6 +130,31 @@
     </div>
 </div>
 
+<footer style="padding: 40px 0; border-top: 1px solid #e2e8f0; text-align: center;">
+    <a href="help.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Help</a> |
+    <a href="about.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">About</a> |
+    <a href="contact.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Contact</a> |
+    <a href="terms.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Terms</a> |
+    <a href="privacy.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Privacy</a>
+    <p style="color: #cbd5e1; margin-top: 20px;">&copy; 2026 OnlineStopwatch24</p>
+</footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Online Timer",
+    "url": "https://onlinestopwatch24.com/timer.html",
+    "description": "Free online timer for Pomodoro sessions, workouts, cooking, and study with fullscreen display.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    }
+}
+</script>
 <script>
     let timer;
     let totalSecs = 0;

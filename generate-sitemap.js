@@ -1,0 +1,54 @@
+const fs = require('fs');
+const path = require('path');
+
+const DOMAIN = 'https://onlinestopwatch24.com';
+
+// Priority and changefreq rules
+const config = {
+  'index.html': { priority: '1.00', changefreq: 'monthly' },
+  'timer.html': { priority: '0.90', changefreq: 'monthly' },
+  'countdown.html': { priority: '0.90', changefreq: 'monthly' },
+  'articles.html': { priority: '0.70', changefreq: 'weekly' },
+  'about.html': { priority: '0.50', changefreq: 'yearly' },
+  'help.html': { priority: '0.50', changefreq: 'yearly' },
+  'contact.html': { priority: '0.40', changefreq: 'yearly' },
+  'privacy.html': { priority: '0.30', changefreq: 'yearly' },
+  'terms.html': { priority: '0.30', changefreq: 'yearly' },
+};
+
+// Default for any new HTML files not in the config above
+const defaults = { priority: '0.50', changefreq: 'monthly' };
+
+// Files to exclude from sitemap
+const exclude = ['404.html'];
+
+// Find all HTML files in the root directory
+const htmlFiles = fs.readdirSync(__dirname)
+  .filter(f => f.endsWith('.html') && !exclude.includes(f))
+  .sort((a, b) => {
+    const pa = parseFloat((config[a] || defaults).priority);
+    const pb = parseFloat((config[b] || defaults).priority);
+    return pb - pa; // highest priority first
+  });
+
+const today = new Date().toISOString().split('T')[0];
+
+let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+for (const file of htmlFiles) {
+  const { priority, changefreq } = config[file] || defaults;
+  const loc = file === 'index.html' ? `${DOMAIN}/` : `${DOMAIN}/${file}`;
+
+  xml += '  <url>\n';
+  xml += `    <loc>${loc}</loc>\n`;
+  xml += `    <lastmod>${today}</lastmod>\n`;
+  xml += `    <changefreq>${changefreq}</changefreq>\n`;
+  xml += `    <priority>${priority}</priority>\n`;
+  xml += '  </url>\n';
+}
+
+xml += '</urlset>\n';
+
+fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), xml);
+console.log(`Sitemap generated with ${htmlFiles.length} pages.`);
