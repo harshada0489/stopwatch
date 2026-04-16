@@ -6,7 +6,21 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%232ecc71%22/><circle cx=%2250%22 cy=%2255%22 r=%2225%22 fill=%22none%22 stroke=%22white%22 stroke-width=%226%22/><path d=%22M47 48v14l10-7z%22 fill=%22white%22/><path d=%22M45 22h10v6H45z%22 fill=%22white%22/></svg>">
     <link rel="stylesheet" href="style.css">
     <link rel="canonical" href="https://onlinestopwatch24.com/countdown.html" />
-    <title>Online Countdown - OnlineStopwatch24</title>
+    <title>Online Countdown Timer - Free Quick Countdown with Presets | OnlineStopwatch24</title>
+    <meta name="description" content="Free online countdown timer with quick presets for 1, 5, 10, and 30 minutes. Fullscreen mode for classrooms, gyms, and presentations. No sign-up required.">
+    <meta name="keywords" content="countdown timer, online countdown, quick countdown, classroom timer, presentation timer, gym timer, free countdown">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Online Countdown Timer - Free Quick Countdown with Presets">
+    <meta property="og:description" content="Free online countdown timer with quick presets for 1, 5, 10, and 30 minutes. Fullscreen mode for classrooms and gyms.">
+    <meta property="og:url" content="https://onlinestopwatch24.com/countdown.html">
+    <meta property="og:site_name" content="OnlineStopwatch24">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Online Countdown Timer - Free Quick Countdown with Presets">
+    <meta name="twitter:description" content="Free online countdown timer with quick presets for 1, 5, 10, and 30 minutes. Fullscreen mode for classrooms and gyms.">
     <style>
         :root { --bg: #f8fafc; --card: #ffffff; --primary: #2ecc71; --text: #1e293b; --secondary: #64748b; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text); line-height: 1.6; }
@@ -56,30 +70,6 @@
             position: relative;
         }
 
-             .fs-toggle {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: var(--secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.2s, color 0.2s;
-            line-height: 1;
-            padding: 5px;
-            z-index: 10;
-        }
-
-        .fs-toggle:hover {
-            color: var(--primary);
-            transform: scale(1.1);
-        }
-
-        /* Ensure the card is the "anchor" for the icon */
-        .stopwatch-card, .timer-card, .countdown-card {
-            position: relative;
-        }   
     </style>
 </head>
 <body>
@@ -129,11 +119,31 @@
     </div>
 </div>
 
-<footer>
-    <a href="help.html">Help</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy</a>
-    <p>&copy; 2026 OnlineStopwatch24</p>
+<footer style="padding: 40px 0; border-top: 1px solid #e2e8f0; text-align: center;">
+    <a href="help.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Help</a> |
+    <a href="about.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">About</a> |
+    <a href="contact.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Contact</a> |
+    <a href="terms.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Terms</a> |
+    <a href="privacy.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Privacy</a>
+    <p style="color: #cbd5e1; margin-top: 20px;">&copy; 2026 OnlineStopwatch24</p>
 </footer>
 
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Online Countdown Timer",
+    "url": "https://onlinestopwatch24.com/countdown.html",
+    "description": "Free online countdown timer with quick presets for 1, 5, 10, and 30 minutes with fullscreen mode.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    }
+}
+</script>
 <script>
     let timer;
     let timeLeft = 0;

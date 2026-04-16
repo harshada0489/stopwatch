@@ -2,23 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us - Stopwatch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%232ecc71%22/><circle cx=%2250%22 cy=%2255%22 r=%2225%22 fill=%22none%22 stroke=%22white%22 stroke-width=%226%22/><path d=%22M47 48v14l10-7z%22 fill=%22white%22/><path d=%22M45 22h10v6H45z%22 fill=%22white%22/></svg>">
+    <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://onlinestopwatch24.com/contact.html" />
+    <title>Contact Us - OnlineStopwatch24 | Get in Touch</title>
+    <meta name="description" content="Contact the OnlineStopwatch24 team for questions, feedback, or support. We typically respond within 24 hours.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact Us - OnlineStopwatch24">
+    <meta property="og:description" content="Contact the OnlineStopwatch24 team for questions, feedback, or support.">
+    <meta property="og:url" content="https://onlinestopwatch24.com/contact.html">
+    <meta property="og:site_name" content="OnlineStopwatch24">
+
     <style>
-        body { font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f2f5; }
-        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center; }
-        h1 { color: #2d3436; }
-        p { color: #636e72; }
-        .email-btn { display: inline-block; padding: 12px 25px; background: #2ecc71; color: white; text-decoration: none; border-radius: 10px; font-weight: 600; margin-top: 20px; }
+        :root { --bg: #f8fafc; --primary: #2ecc71; --text: #1e293b; --secondary: #64748b; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text); line-height: 1.6; }
+
+        nav { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-weight: 800; color: var(--primary); text-decoration: none; font-size: 1.5rem; }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.9rem; }
+
+        .container { max-width: 600px; margin: 60px auto; padding: 0 20px; text-align: center; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        h1 { color: var(--text); }
+        p { color: var(--secondary); }
+        .email-btn { display: inline-block; padding: 12px 25px; background: var(--primary); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; margin-top: 20px; }
     </style>
 </head>
 <body>
+
+<nav>
+    <a href="index.html" class="logo">⏱ OnlineStopwatch</a>
+    <div class="nav-links">
+        <a href="index.html">Stopwatch</a>
+        <a href="timer.html">Timer</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="articles.html">Articles</a>
+        <a href="about.html">About</a>
+        <a href="help.html">How to Use</a>
+    </div>
+</nav>
+
+<div class="container">
     <div class="card">
         <h1>Contact Us</h1>
         <p>Have a question or feedback? We'd love to hear from you.</p>
         <p>Our team usually responds within 24 hours.</p>
-        <a href="mailto:support@stopwatch.com" class="email-btn">Email Support</a>
-        <br><br>
-        <a href="index.html" style="color: #b2bec3; text-decoration: none; font-size: 0.9rem;">Return to Home</a>
+        <a href="mailto:support@onlinestopwatch24.com" class="email-btn">Email Support</a>
     </div>
+</div>
+
+<footer style="padding: 40px 0; border-top: 1px solid #e2e8f0; text-align: center;">
+    <a href="help.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Help</a> |
+    <a href="about.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">About</a> |
+    <a href="contact.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Contact</a> |
+    <a href="terms.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Terms</a> |
+    <a href="privacy.html" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.85rem;">Privacy</a>
+    <p style="color: #cbd5e1; margin-top: 20px;">&copy; 2026 OnlineStopwatch24</p>
+</footer>
+
 </body>
 </html>
